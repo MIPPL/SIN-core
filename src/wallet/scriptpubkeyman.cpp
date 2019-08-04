@@ -10,6 +10,7 @@
 #include <util/strencodings.h>
 #include <util/string.h>
 #include <util/translation.h>
+#include <wallet/externalsigner.h>
 #include <wallet/scriptpubkeyman.h>
 
 bool LegacyScriptPubKeyMan::GetNewDestination(const OutputType type, CTxDestination& dest, std::string& error)
