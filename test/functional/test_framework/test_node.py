@@ -607,7 +607,7 @@ class RPCOverloadWrapper():
     def __getattr__(self, name):
         return getattr(self.rpc, name)
 
-    def createwallet(self, wallet_name, disable_private_keys=None, blank=None, passphrase=None, avoid_reuse=None, descriptors=None):
+    def createwallet(self, wallet_name, disable_private_keys=None, blank=None, passphrase=None, avoid_reuse=None, descriptors=None, external_signer=None):
         if self.is_cli:
             if disable_private_keys is None:
                 disable_private_keys = 'null'
@@ -617,9 +617,11 @@ class RPCOverloadWrapper():
                 passphrase = ''
             if avoid_reuse is None:
                 avoid_reuse = 'null'
+            if external_signer is None:
+                external_signer = 'null'
         if descriptors is None:
             descriptors = self.descriptors
-        return self.__getattr__('createwallet')(wallet_name, disable_private_keys, blank, passphrase, avoid_reuse, descriptors)
+        return self.__getattr__('createwallet')(wallet_name, disable_private_keys, blank, passphrase, avoid_reuse, descriptors, external_signer)
 
     def importprivkey(self, privkey, label=None, rescan=None):
         wallet_info = self.getwalletinfo()
