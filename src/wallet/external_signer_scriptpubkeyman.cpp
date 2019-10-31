@@ -16,11 +16,11 @@ bool ExternalSignerScriptPubKeyMan::SetupDescriptor(std::unique_ptr<Descriptor> 
 
     // Make the descriptor
     WalletDescriptor w_desc(std::move(desc), creation_time, 0, 0, 0);
-    descriptor = w_desc;
+    m_wallet_descriptor = w_desc;
 
     // Store the descriptor
     WalletBatch batch(m_storage.GetDatabase());
-    if (!batch.WriteDescriptor(GetID(), descriptor)) {
+    if (!batch.WriteDescriptor(GetID(), m_wallet_descriptor)) {
         throw std::runtime_error(std::string(__func__) + ": writing descriptor failed");
     }
 
@@ -31,3 +31,20 @@ bool ExternalSignerScriptPubKeyMan::SetupDescriptor(std::unique_ptr<Descriptor> 
     return true;
 }
 
+ExternalSigner ExternalSignerScriptPubKeyMan::GetExternalSigner() {
+#ifdef ENABLE_EXTERNAL_SIGNER
+    const std::string command = gArgs.GetArg("-signer", ""); // DEFAULT_EXTERNAL_SIGNER);
+    if (command == "") throw std::runtime_error(std::string(__func__) + ": restart bitcoind with -signer=<cmd>");
+
+    std::string chain = gArgs.GetChainName();
+    const bool mainnet = chain == CBaseChainParams::MAIN;
+    std::vector<ExternalSigner> signers;
+    ExternalSigner::Enumerate(command, signers, mainnet);
+    if (signers.empty()) throw std::runtime_error(std::string(__func__) + ": No external signers found");
+    // TODO: add fingerprint argument in case of multiple signers
+    return signers[0];
+#else
+    throw std::runtime_error(std::string(__func__) + ": Wallets with external signers require Boost::System library.");
+#endif
+
+}
