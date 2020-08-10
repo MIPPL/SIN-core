@@ -49,7 +49,6 @@
 #include <masternode-payments.h>
 #include <infinitynodelockreward.h>
 #include <infinitynodelockinfo.h>
-#include <infinitynodemeta.h>
 
 #include <future>
 #include <sstream>
@@ -2525,7 +2524,6 @@ bool CChainState::DisconnectTip(CValidationState& state, const CChainParams& cha
             infnodelrinfo.Remove(v);
         }
         infnodeman.removeNonMaturedList(pindexDelete);
-        infnodemeta.RemoveMetaFromBlock(block, pindexDelete, view, chainparams);
         //
         bool flushed = view.Flush();
         assert(flushed);

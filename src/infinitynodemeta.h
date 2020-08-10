@@ -99,8 +99,6 @@ public:
     void setService(CService inService){metadataService = inService;};
     void setBackupAddress(int nActive){activeBackupAddress = nActive;};
     void addHisto(CMetahisto inHisTo){vHisto.push_back(inHisTo);}
-    void removeHisto(CMetahisto inHisTo);
-    CMetahisto getLastHisto();
 };
 
 class CInfinitynodeMeta
@@ -134,13 +132,10 @@ public:
 
     void Clear();
     bool Add(CMetadata &meta);
-    bool Remove(CMetadata &meta);
     bool Has(std::string  metaID);
     CMetadata Find(std::string  metaID);
     bool Get(std::string  nodePublicKey, CMetadata& meta);
     std::map<std::string, CMetadata> GetFullNodeMetadata() { LOCK(cs); return mapNodeMetadata; }
-
-    bool RemoveMetaFromBlock(const CBlock& block, CBlockIndex* pindex, CCoinsViewCache& view, const CChainParams& chainparams);
 
     bool metaScan(int nHeight);
     bool setActiveBKAddress(std::string  metaID);
