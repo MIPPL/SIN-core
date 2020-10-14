@@ -364,6 +364,10 @@ public:
         nPoolMaxTransactions = 3;
 
         checkpointData = {
+            {
+                { 0, consensus.hashGenesisBlock },
+                { 1, uint256S("00007fa8723f54efdb98467b9977b8b2dc120797d5313ad7dcc0cf6cffef7009")},
+            }
         };
 
         chainTxData = ChainTxData{
