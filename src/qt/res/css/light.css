@@ -791,12 +791,6 @@ QDialog#OptionsDialog QLabel#threadsScriptVerifLabel {
     color:#707070;
  }
 
-  QDialog#OptionsDialog QLabel#recordsToLoadLabel {
- 	spacing: 5px;
-     font-size:18px;
-     color:#707070;
-  }
-
 QDialog#OptionsDialog QCheckBox#displayAddresses {
 min-height:33px;
 

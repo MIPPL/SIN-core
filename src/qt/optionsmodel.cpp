@@ -28,8 +28,6 @@
 
 const char *DEFAULT_GUI_PROXY_HOST = "127.0.0.1";
 
-#define DEFAULT_RECORDS_TO_LOAD 20000
-
 static const QString GetDefaultProxyAddress();
 
 OptionsModel::OptionsModel(interfaces::Node& node, QObject *parent, bool resetSettings) :
@@ -82,10 +80,6 @@ void OptionsModel::Init(bool resetSettings)
     if (!settings.contains("nDisplayUnit"))
         settings.setValue("nDisplayUnit", BitcoinUnits::SIN);
     nDisplayUnit = settings.value("nDisplayUnit").toInt();
-
-    if (!settings.contains("nRecordsToLoad"))
-        settings.setValue("nRecordsToLoad", DEFAULT_RECORDS_TO_LOAD);
-    nRecordsToLoad = settings.value("nRecordsToLoad").toInt();
 
     if (!settings.contains("strThirdPartyTxUrls"))
         settings.setValue("strThirdPartyTxUrls", "");
@@ -316,8 +310,6 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
 #endif
         case DisplayUnit:
             return nDisplayUnit;
-        case RecordsToLoad:
-            return nRecordsToLoad;
         case ThirdPartyTxUrls:
             return strThirdPartyTxUrls;
         case Language:
@@ -453,12 +445,6 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
         case Language:
             if (settings.value("language") != value) {
                 settings.setValue("language", value);
-                setRestartRequired(true);
-            }
-            break;
-        case RecordsToLoad:
-            if (settings.value("nRecordsToLoad") != value) {
-                settings.setValue("nRecordsToLoad", value);
                 setRestartRequired(true);
             }
             break;
