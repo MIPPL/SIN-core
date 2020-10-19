@@ -498,8 +498,12 @@ void MasternodeList::updateDINList()
             }
             QString nodeTxId = QString::fromStdString(infoInf.collateralAddress);
             ui->dinTable->setItem(k, 0, new QTableWidgetItem(QString(nodeTxId)));
-            ui->dinTable->setItem(k, 1, new QTableWidgetItem(QString::number(infoInf.nHeight)));
-            ui->dinTable->setItem(k, 2, new QTableWidgetItem(QString::number(infoInf.nExpireHeight)));
+            QTableWidgetItem *itemHeight = new QTableWidgetItem;
+            itemHeight.setData(Qt::EditRole, infoInf.nHeight);
+            ui->dinTable->setItem(k, 1, itemHeight);
+            QTableWidgetItem *itemExpiryHeight = new QTableWidgetItem;
+            itemExpiryHeight.setData(Qt::EditRole, infoInf.nExpireHeight);
+            ui->dinTable->setItem(k, 2, itemExpiryHeight);
             ui->dinTable->setItem(k, 3, new QTableWidgetItem(QString(QString::fromStdString(status))));
             ui->dinTable->setItem(k, 4, new QTableWidgetItem(QString(QString::fromStdString(strIP))));
             ui->dinTable->setItem(k, 5, new QTableWidgetItem(QString(QString::fromStdString(sPeerAddress))));
