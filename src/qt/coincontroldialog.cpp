@@ -35,6 +35,8 @@
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 
+#define MAX_BYTES_TO_SELECT 99999
+
 QList<CAmount> CoinControlDialog::payAmounts;
 bool CoinControlDialog::fSubtractFeeFromAmount = false;
 
@@ -198,10 +200,20 @@ void CoinControlDialog::buttonSelectAllClicked()
             break;
         }
     }
+    int nBytes = 0;
     ui->treeWidget->setEnabled(false);
-    for (int i = 0; i < ui->treeWidget->topLevelItemCount(); i++)
-            if (ui->treeWidget->topLevelItem(i)->checkState(COLUMN_CHECKBOX) != state)
-                ui->treeWidget->topLevelItem(i)->setCheckState(COLUMN_CHECKBOX, state);
+    for (int i = 0; i < ui->treeWidget->topLevelItemCount(); i++) 
+    {
+        if (ui->treeWidget->topLevelItem(i)->checkState(COLUMN_CHECKBOX) != state) {
+            ui->treeWidget->topLevelItem(i)->setCheckState(COLUMN_CHECKBOX, state);
+            if (state == Qt::Checked) {
+                nBytes = nBytes + 148;
+            }
+        }
+        if (nBytes > MAX_BYTES_TO_SELECT) {
+            break;
+        }
+    }
     ui->treeWidget->setEnabled(true);
     if (state == Qt::Unchecked)
         coinControl()->UnSelectAll(); // just to be sure
