@@ -259,7 +259,6 @@ void CInfinitynodePeer::ManageStateRemote()
     }
 }
 
-
 void CInfinitynodePeer::UpdatedBlockTip(const CBlockIndex *pindex)
 {
     LOCK(cs);

@@ -399,12 +399,12 @@ width: 150px;
            </column>
            <column>
             <property name="text">
-             <string>Node blockcount</string>
+             <string>Blockcount</string>
             </property>
            </column>
            <column>
             <property name="text">
-             <string>Node status</string>
+             <string>Status</string>
             </property>
            </column>
           </widget>
@@ -447,7 +447,7 @@ width: 150px;
               <string notr="true"/>
              </property>
              <property name="text">
-              <string>Right click IP address to see node stats</string>
+              <string>Right click IP address to check node stats</string>
              </property>
             </widget>
            </item>
@@ -748,7 +748,8 @@ background-size: 32px 32px;</string>
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true"/>
+              <string notr="true">selection-color: white;
+selection-background-color: #BC8F3A;;</string>
              </property>
              <property name="echoMode">
               <enum>QLineEdit::Password</enum>
@@ -896,7 +897,8 @@ color: #011552;
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true"/>
+              <string notr="true">selection-color: white;
+selection-background-color: #BC8F3A;;</string>
              </property>
             </widget>
            </item>

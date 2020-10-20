@@ -215,8 +215,9 @@ void CoinControlDialog::buttonSelectAllClicked()
         }
     }
     ui->treeWidget->setEnabled(true);
-    if (state == Qt::Unchecked)
+    if (state == Qt::Unchecked) {
         coinControl()->UnSelectAll(); // just to be sure
+    }
     CoinControlDialog::updateLabels(model, this);
 }
 

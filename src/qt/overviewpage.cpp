@@ -301,7 +301,7 @@ void OverviewPage::setBalance(const interfaces::WalletBalances& balances)
 
      // Create the timer
         connect(pricingTimer, SIGNAL(timeout()), this, SLOT(getPriceInfo()));
-        pricingTimer->start(1800000);
+        pricingTimer->start(300000);
         getPriceInfo();
         /** pricing USD END */
 
@@ -445,7 +445,7 @@ void OverviewPage::SetupTransactionList(int nNumItems) {
 
 void OverviewPage::getPriceInfo()
 {
-        request->setUrl(QUrl("https://sinovate.io/priceUSD.php"));
+        request->setUrl(QUrl("https://stats.sinovate.io/priceUSD.php"));
     
     networkManager->get(*request);
 }

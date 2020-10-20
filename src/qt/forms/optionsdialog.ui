@@ -155,7 +155,7 @@ height: 30px;
         </layout>
        </item>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2_Main">
+        <layout class="QHBoxLayout" name="horizontalLayout_3_Main">
          <item>
           <widget class="QLabel" name="recordsToLoadLabel">
            <property name="text">
@@ -931,7 +931,7 @@ height: 30px;
           <string>Open the %1 configuration file from the working directory.</string>
          </property>
          <property name="text">
-          <string>Open Configuration File</string>
+          <string>Open Configuration File (sin.conf)</string>
          </property>
          <property name="autoDefault">
           <bool>false</bool>

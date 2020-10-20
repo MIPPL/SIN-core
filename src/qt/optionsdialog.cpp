@@ -37,10 +37,7 @@ OptionsDialog::OptionsDialog(QWidget *parent, bool enableWallet) :
 {
     ui->setupUi(this);
 
-    //Hide OpenConfigurationFileButton//
-    ui->openSINConfButton->hide();
-
-
+    
     #if defined(Q_OS_WIN)
 
     #else
@@ -271,7 +268,7 @@ void OptionsDialog::on_resetButton_clicked()
     }
 }
 
-void OptionsDialog::on_openBitcoinConfButton_clicked()
+void OptionsDialog::on_openSINConfButton_clicked()
 {
     /* explain the purpose of the config file */
     QMessageBox::information(this, tr("Configuration options"),
@@ -279,7 +276,7 @@ void OptionsDialog::on_openBitcoinConfButton_clicked()
            "Additionally, any command-line options will override this configuration file."));
 
     /* show an error if there was some problem opening the file */
-    if (!GUIUtil::openBitcoinConf())
+    if (!GUIUtil::openSinConf())
         QMessageBox::critical(this, tr("Error"), tr("The configuration file could not be opened."));
 }
 
